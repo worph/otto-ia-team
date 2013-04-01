@@ -8,10 +8,10 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Insert title here</title>
+<title>Page Test</title>
 </head>
 <body>
-
+Hello Wordl!
 </body>
 </html>
 </jsp:root>
