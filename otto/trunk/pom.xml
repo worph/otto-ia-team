@@ -15,6 +15,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.build.version>1.6</java.build.version>
+        <dependance.appengine.version>1.7.6</dependance.appengine.version>
 	</properties>
 
 	<developers>
@@ -24,7 +25,7 @@
 		</developer>
 		<developer>
 			<id>TomTom</id>
-			<name>Thoams CORNET</name>
+			<name>Thomas CORNET</name>
 		</developer>
 	</developers>
 
@@ -45,6 +46,38 @@
 					<target>${java.build.version}</target>
 				</configuration>
 			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <archiveClasses>true</archiveClasses>
+                    <webResources>
+                        <!-- in order to interpolate version from pom into appengine-web.xml -->
+                        <resource>
+                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>${dependance.appengine.version}</version>
+            </plugin>
 		</plugins>
 	</build>
+	
+    <dependencies>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-1.0-sdk</artifactId>
+            <version>${dependance.appengine.version}</version>
+        </dependency>
+    </dependencies>
+		
 </project>
