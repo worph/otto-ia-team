@@ -1,9 +1,50 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>otto</groupId>
-  <artifactId>otto</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <name>Otto</name>
-  <description>IA pour tournoyons</description>
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>otto</groupId>
+	<artifactId>otto</artifactId>
+
+	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>war</packaging>
+
+	<name>Otto</name>
+	<description>IA pour tournoyons</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.build.version>1.6</java.build.version>
+	</properties>
+
+	<developers>
+		<developer>
+			<id>PH</id>
+			<name>Pierre-Henri FRICOT</name>
+		</developer>
+		<developer>
+			<id>TomTom</id>
+			<name>Thoams CORNET</name>
+		</developer>
+	</developers>
+
+	<!-- TODO -->
+	<!-- <scm> -->
+	<!-- <connection></connection> -->
+	<!-- </scm> -->
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<source>${java.build.version}</source>
+					<target>${java.build.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
