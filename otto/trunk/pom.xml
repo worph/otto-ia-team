@@ -32,10 +32,11 @@
         </developer>
     </developers>
 
-    <!-- TODO -->
-    <!-- <scm> -->
-    <!-- <connection></connection> -->
-    <!-- </scm> -->
+<!--     <scm> -->
+<!--        <connection>scm:svn:http://otto-ia-team.googlecode.com/svn/otto/trunk/</connection> -->
+<!--        <developerConnection>scm:svn:https://otto-ia-team.googlecode.com/svn/otto/trunk/</developerConnection> -->
+<!--        <url>https://otto-ia-team.googlecode.com/svn/otto/tags/</url> -->
+<!--     </scm> -->
 
     <build>
         <plugins>
@@ -54,15 +55,23 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
-                <configuration>
+				<configuration>
                     <webResources>
                         <!-- in order to interpolate version from pom into appengine-web.xml -->
                         <resource>
-                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                            <directory>${basedir}/src/main/webapp</directory>
                             <filtering>true</filtering>
-                            <targetPath>WEB-INF</targetPath>
                         </resource>
                     </webResources>
+                </configuration>
+            </plugin>
+						
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <configuration>
+                    <additionalProjectFacets>
+                        <jst.web>3.0</jst.web>
+                    </additionalProjectFacets>
                 </configuration>
             </plugin>
 
