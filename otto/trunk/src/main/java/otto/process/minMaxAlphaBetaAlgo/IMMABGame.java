@@ -10,15 +10,15 @@ import java.util.ArrayList;
  *
  * @author PIERRE
  */
-public interface MMABGame {
+public interface IMMABGame {
         public boolean isEnd();
 
-        public ArrayList<MMABMove> getPossibilities();
+        public ArrayList<IMMABMove> getPossibilities();
 
-        public void play(MMABMove coup);
+        public void play(IMMABMove coup);
 
-        public void unPlay(MMABMove coup);
+        public void unPlay(IMMABMove coup);
 
-        public int evaluateSituationFor(MMABPlayer Player);
+        public int evaluateSituationFor(IMMABPlayer Player);
         
 }

@@ -8,15 +8,16 @@ package otto.process.dto;
  *
  * @author PIERRE
  */
-public class EngineRequest {
-    private String gain1;
-    private String gain2;
+public class EngineRequestDTO {
+    private Integer gain1;
+    private Integer gain2;
     private String move1;
     private String move2;
     private String tray;
     private String value;
+    private Integer timeout;
 
-    public EngineRequest(String gain1, String gain2, String move1, String move2, String tray, String value) {
+    public EngineRequestDTO(Integer gain1, Integer gain2, String move1, String move2, String tray, String value) {
         this.gain1 = gain1;
         this.gain2 = gain2;
         this.move1 = move1;
@@ -25,11 +26,15 @@ public class EngineRequest {
         this.value = value;
     }
 
-    public String getGain1() {
+    public Integer getGain1() {
         return gain1;
     }
 
-    public String getGain2() {
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public Integer getGain2() {
         return gain2;
     }
 

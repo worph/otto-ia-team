@@ -4,8 +4,10 @@
  */
 package otto.process.engines;
 
-import otto.process.dto.EngineRequest;
-import otto.process.dto.EngineResult;
+import otto.process.dto.EngineRequestDTO;
+import otto.process.dto.EngineResultDTO;
+import otto.process.engines.TicTacToeGame.Move;
+import otto.process.minMaxAlphaBetaAlgo.MinMaxAlphaBeta;
 
 /**
  *
@@ -14,8 +16,11 @@ import otto.process.dto.EngineResult;
 public class EngineTicTacToe implements Engine{
 
     @Override
-    public EngineResult process(EngineRequest req) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public EngineResultDTO process(EngineRequestDTO req) {
+        TicTacToeGame.Player iaplayer = TicTacToeGame.Player.X;
+        TicTacToeGame ticTacToeGame = new TicTacToeGame(iaplayer, req.getTray());
+        Move coup = (Move) new MinMaxAlphaBeta().calcIA(ticTacToeGame,iaplayer, 100);
+        return new EngineResultDTO(Character.toString(coup.toBoardNumber()));
     }
     
 }

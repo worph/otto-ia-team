@@ -4,24 +4,29 @@
  */
 package otto.process.engines;
 
-import otto.process.minMaxAlphaBetaAlgo.MMABGame;
-import otto.process.minMaxAlphaBetaAlgo.MMABMove;
-import otto.process.minMaxAlphaBetaAlgo.MMABPlayer;
 import java.util.ArrayList;
+import otto.process.minMaxAlphaBetaAlgo.IMMABGame;
+import otto.process.minMaxAlphaBetaAlgo.IMMABMove;
+import otto.process.minMaxAlphaBetaAlgo.IMMABPlayer;
 
 /**
  *
  * @author PIERRE
  */
-public class TicTacToeGame implements MMABGame{
+public class TicTacToeGame implements IMMABGame{
+    
+    public enum BoardGlobalState {X_WIN,O_WIN,DRAW,UNCLEAR};
+    public enum BoardCase {X,O,Empty};
+    private BoardCase[][] board;
+    private Player currentPlayer;
 
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
     
-    public enum Player implements MMABPlayer {X,O};
+    public enum Player implements IMMABPlayer {X,O};
         
-    public class Move implements MMABMove{
+    public class Move implements IMMABMove{
         public int row;
         public int column;
 
@@ -30,14 +35,80 @@ public class TicTacToeGame implements MMABGame{
             this.column = column;
         }
         
+        char toBoardNumber(){
+            switch(row*10+column){
+                case 00: return '1';
+                case 10: return '2';
+                case 20: return '3';
+                case 01: return '4';
+                case 11: return '5';
+                case 21: return '6';
+                case 02: return '7';
+                case 12: return '8';
+                case 22: return '9';
+            }
+            return '1';
+        }
+    }
+    
+    public TicTacToeGame(Player whoPlay,TicTacToeGame old) {
+        currentPlayer = whoPlay;
+        board = new BoardCase[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = old.board[i][j];
+            }
+        }
+    }
+    
+    public TicTacToeGame(Player whoPlay,String boarddata) {
+        if(boarddata.length()==9){
+           board[0][0] = charToEnum(boarddata.charAt(0));
+           board[1][0] = charToEnum(boarddata.charAt(1));
+           board[2][0] = charToEnum(boarddata.charAt(2));
+           board[0][1] = charToEnum(boarddata.charAt(3));
+           board[1][1] = charToEnum(boarddata.charAt(4));
+           board[2][1] = charToEnum(boarddata.charAt(5));
+           board[0][2] = charToEnum(boarddata.charAt(6));
+           board[1][2] = charToEnum(boarddata.charAt(7));
+           board[2][2] = charToEnum(boarddata.charAt(8));
+        }
+    }
+    
+    private BoardCase charToEnum(char c){
+        if(c=='0'){
+            return BoardCase.Empty;
+        }else if(c=='1'){
+            return BoardCase.O;
+        }else if(c=='2'){
+            return BoardCase.X;
+        }
+        return BoardCase.Empty;
     }
 
+    public TicTacToeGame(Player whoPlay) {
+        currentPlayer = whoPlay;
+        board = new BoardCase[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = BoardCase.Empty;
+            }
+        }
+    }
+
+    private TicTacToeGame(BoardCase[][] board, Player whoPlay) {
+        this.board = board;
+        this.currentPlayer = whoPlay;
+    }
+
+    @Override
     public boolean isEnd() {
         return currentResult()!=BoardGlobalState.UNCLEAR;
     }
 
-    public ArrayList<MMABMove> getPossibilities() {
-        ArrayList<MMABMove> ret = new ArrayList<MMABMove>();
+    @Override
+    public ArrayList<IMMABMove> getPossibilities() {
+        ArrayList<IMMABMove> ret = new ArrayList<IMMABMove>();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if(canPlace(i, j)){
@@ -48,7 +119,8 @@ public class TicTacToeGame implements MMABGame{
         return ret;
     }
 
-    public void play(MMABMove coup) {
+    @Override
+    public void play(IMMABMove coup) {
         Move amove = (Move) coup;
         if(canPlace(amove)){
             board[amove.row][amove.column] = caseOfThisPlayer(currentPlayer);
@@ -60,7 +132,8 @@ public class TicTacToeGame implements MMABGame{
         }
     }
 
-    public void unPlay(MMABMove coup) {
+    @Override
+    public void unPlay(IMMABMove coup) {
         Move amove = (Move) coup;
         board[amove.row][amove.column] = BoardCase.Empty;
         if(currentPlayer==Player.O){
@@ -70,7 +143,8 @@ public class TicTacToeGame implements MMABGame{
         }
     }
 
-    public int evaluateSituationFor(MMABPlayer player) {
+    @Override
+    public int evaluateSituationFor(IMMABPlayer player) {
         Player p = (Player) player;
         if(isAWin(p)){
             return 1000;
@@ -80,38 +154,7 @@ public class TicTacToeGame implements MMABGame{
         }
         return -1000;
     }
-
-    
-    public enum BoardGlobalState {X_WIN,O_WIN,DRAW,UNCLEAR};
-    public enum BoardCase {X,O,Empty};
-    private BoardCase[][] board;
-    Player currentPlayer;
-    
-    public TicTacToeGame(Player whoStarts,TicTacToeGame old) {
-        currentPlayer = whoStarts;
-        board = new BoardCase[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = old.board[i][j];
-            }
-        }
-    }
-
-    public TicTacToeGame(Player whoStarts) {
-        currentPlayer = whoStarts;
-        board = new BoardCase[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = BoardCase.Empty;
-            }
-        }
-    }
-
-    private TicTacToeGame(BoardCase[][] board, Player currentPlayer) {
-        this.board = board;
-        this.currentPlayer = currentPlayer;
-    }
-   
+     
     
     public String print(){
         String ret="player : "+currentPlayer.toString()+" : \n";
