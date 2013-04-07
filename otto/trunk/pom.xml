@@ -16,8 +16,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.build.version>1.6</java.build.version>
 
-        <dependance.appengine.version>1.7.6</dependance.appengine.version>
+        <!-- SPRING -->
         <dependance.springframework.integration.version>2.2.3.RELEASE</dependance.springframework.integration.version>
+
+        <!-- LOGGER -->
+        <dependance.logger.slf4j.version>1.7.5</dependance.logger.slf4j.version>
+        <dependance.logger.logback.version>1.0.11</dependance.logger.logback.version>
+
+        <!-- AUTRE -->
+        <dependance.appengine.version>1.7.6</dependance.appengine.version>
 
     </properties>
 
@@ -32,11 +39,11 @@
         </developer>
     </developers>
 
-<!--     <scm> -->
-<!--        <connection>scm:svn:http://otto-ia-team.googlecode.com/svn/otto/trunk/</connection> -->
-<!--        <developerConnection>scm:svn:https://otto-ia-team.googlecode.com/svn/otto/trunk/</developerConnection> -->
-<!--        <url>https://otto-ia-team.googlecode.com/svn/otto/tags/</url> -->
-<!--     </scm> -->
+    <!-- <scm> -->
+    <!-- <connection>scm:svn:http://otto-ia-team.googlecode.com/svn/otto/trunk/</connection> -->
+    <!-- <developerConnection>scm:svn:https://otto-ia-team.googlecode.com/svn/otto/trunk/</developerConnection> -->
+    <!-- <url>https://otto-ia-team.googlecode.com/svn/otto/tags/</url> -->
+    <!-- </scm> -->
 
     <build>
         <plugins>
@@ -55,7 +62,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
-				<configuration>
+                <configuration>
                     <webResources>
                         <!-- in order to interpolate version from pom into appengine-web.xml -->
                         <resource>
@@ -65,7 +72,7 @@
                     </webResources>
                 </configuration>
             </plugin>
-						
+
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <configuration>
@@ -93,11 +100,39 @@
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-core</artifactId>
             <version>${dependance.springframework.integration.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-http</artifactId>
             <version>${dependance.springframework.integration.version}</version>
+        </dependency>
+
+        <!-- LOGGER -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${dependance.logger.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${dependance.logger.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${dependance.logger.logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${dependance.logger.logback.version}</version>
         </dependency>
 
         <!-- Autre -->
