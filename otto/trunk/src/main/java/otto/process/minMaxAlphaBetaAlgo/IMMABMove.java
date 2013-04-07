@@ -8,6 +8,6 @@ package otto.process.minMaxAlphaBetaAlgo;
  *
  * @author PIERRE
  */
-public interface MMABMove {
+public interface IMMABMove {
     
 }

@@ -8,10 +8,10 @@ package otto.process.dto;
  *
  * @author PIERRE
  */
-public class EngineResult {
+public class EngineResultDTO {
     String value;
 
-    public EngineResult(String value) {
+    public EngineResultDTO(String value) {
         this.value = value;
     }
 

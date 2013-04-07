@@ -4,13 +4,13 @@
  */
 package otto.process.engines;
 
-import otto.process.dto.EngineRequest;
-import otto.process.dto.EngineResult;
+import otto.process.dto.EngineRequestDTO;
+import otto.process.dto.EngineResultDTO;
 
 /**
  *
  * @author PIERRE
  */
 public interface Engine {
-    public EngineResult process(EngineRequest req);
+    public EngineResultDTO process(EngineRequestDTO req);
 }

@@ -4,8 +4,9 @@
  */
 package otto.process.engines;
 
-import otto.process.dto.EngineRequest;
-import otto.process.dto.EngineResult;
+import java.util.Random;
+import otto.process.dto.EngineRequestDTO;
+import otto.process.dto.EngineResultDTO;
 
 /**
  *
@@ -14,8 +15,10 @@ import otto.process.dto.EngineResult;
 public class EngineShiFuMi implements Engine{
 
     @Override
-    public EngineResult process(EngineRequest req) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public EngineResultDTO process(EngineRequestDTO req) {
+        Random rand = new Random();
+        int value = rand.nextInt(3)+1;
+        return new EngineResultDTO(String.valueOf(value));
     }
     
 }
