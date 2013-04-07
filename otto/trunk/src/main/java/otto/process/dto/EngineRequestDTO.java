@@ -16,16 +16,23 @@ public class EngineRequestDTO {
     private String tray;
     private String value;
     private Integer timeout;
+    private Integer turn;
 
-    public EngineRequestDTO(Integer gain1, Integer gain2, String move1, String move2, String tray, String value) {
+    public EngineRequestDTO(Integer gain1, Integer gain2, String move1, String move2, String tray, String value, Integer timeout, Integer turn) {
         this.gain1 = gain1;
         this.gain2 = gain2;
         this.move1 = move1;
         this.move2 = move2;
         this.tray = tray;
         this.value = value;
+        this.timeout = timeout;
+        this.turn = turn;
     }
 
+    public Integer getTurn() {
+        return turn;
+    }
+    
     public Integer getGain1() {
         return gain1;
     }
