@@ -17,15 +17,36 @@
     </listener>
 
     <servlet>
-        <servlet-name>exemple</servlet-name>
+        <servlet-name>servletEngine</servlet-name>
         <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>exemple</servlet-name>
-        <url-pattern>/exemple</url-pattern>
+        <servlet-name>servletEngine</servlet-name>
+        <url-pattern>/engine/call</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>itWorks.jsp</welcome-file>
     </welcome-file-list>
+
+    <!-- UTILE -->
+
+    <servlet>
+        <servlet-name>servletStderr</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servletStderr</servlet-name>
+        <url-pattern>/stderr</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>servletstdout</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servletstdout</servlet-name>
+        <url-pattern>/stdout</url-pattern>
+    </servlet-mapping>
+
 </web-app>
