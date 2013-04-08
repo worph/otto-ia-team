@@ -39,11 +39,11 @@
         </developer>
     </developers>
 
-    <!-- <scm> -->
-    <!-- <connection>scm:svn:http://otto-ia-team.googlecode.com/svn/otto/trunk/</connection> -->
-    <!-- <developerConnection>scm:svn:https://otto-ia-team.googlecode.com/svn/otto/trunk/</developerConnection> -->
-    <!-- <url>https://otto-ia-team.googlecode.com/svn/otto/tags/</url> -->
-    <!-- </scm> -->
+    <scm>
+        <connection>scm:svn:http://otto-ia-team.googlecode.com/svn/otto/trunk/</connection>
+        <developerConnection>scm:svn:https://otto-ia-team.googlecode.com/svn/otto/trunk/</developerConnection>
+        <url>scm:svn:https://otto-ia-team.googlecode.com/svn/otto/trunk//</url>
+    </scm>
 
     <build>
         <resources>
@@ -83,6 +83,7 @@
 
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
                 <configuration>
                     <additionalProjectFacets>
                         <jst.web>3.0</jst.web>
