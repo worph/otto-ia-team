@@ -5,6 +5,11 @@
     id="WebApp_ID" version="3.0">
 
     <display-name>Otto</display-name>
+    
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>webAppRootKey:otto-application-rootKey</param-value>
+    </context-param>
 
     <!-- spring configuration -->
     <context-param>
