@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>otto</groupId>
@@ -21,6 +22,7 @@
         <!-- LOGGER -->
         <dependance.logger.slf4j.version>1.7.5</dependance.logger.slf4j.version>
         <dependance.logger.logback.version>1.0.11</dependance.logger.logback.version>
+        <dependance.logger.logback.ext.version>0.1.1</dependance.logger.logback.ext.version>
 
         <!-- AUTRE -->
         <dependance.appengine.version>1.7.6</dependance.appengine.version>
@@ -147,6 +149,11 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${dependance.logger.logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>${dependance.logger.logback.ext.version}</version>
         </dependency>
 
         <!-- Autre -->
