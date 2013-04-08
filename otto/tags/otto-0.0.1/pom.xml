@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>otto</groupId>
+    <artifactId>otto</artifactId>
+
+    <version>0.0.1</version>
+
+    <packaging>war</packaging>
+
+    <name>Otto</name>
+    <description>IA pour tournoyons</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.build.version>1.6</java.build.version>
+
+        <!-- SPRING -->
+        <dependance.springframework.integration.version>2.2.3.RELEASE</dependance.springframework.integration.version>
+
+        <!-- LOGGER -->
+        <dependance.logger.slf4j.version>1.7.5</dependance.logger.slf4j.version>
+        <dependance.logger.logback.version>1.0.11</dependance.logger.logback.version>
+
+        <!-- AUTRE -->
+        <dependance.appengine.version>1.7.6</dependance.appengine.version>
+
+    </properties>
+
+    <developers>
+        <developer>
+            <id>PH</id>
+            <name>Pierre-Henri FRICOT</name>
+        </developer>
+        <developer>
+            <id>TomTom</id>
+            <name>Thomas CORNET</name>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:svn:http://otto-ia-team.googlecode.com/svn/otto/tags/otto-0.0.1</connection>
+        <developerConnection>scm:svn:https://otto-ia-team.googlecode.com/svn/otto/tags/otto-0.0.1</developerConnection>
+        <url>scm:svn:https://otto-ia-team.googlecode.com/svn/otto/tags/otto-0.0.1</url>
+    </scm>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <source>${java.build.version}</source>
+                    <target>${java.build.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <webResources>
+                        <!-- in order to interpolate version from pom into appengine-web.xml -->
+                        <resource>
+                            <directory>${basedir}/src/main/webapp</directory>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <additionalProjectFacets>
+                        <jst.web>3.0</jst.web>
+                    </additionalProjectFacets>
+                </configuration>
+            </plugin>
+
+            <!-- plugin de déploiment sur appengine -->
+            <plugin>
+                <groupId>com.google.appengine</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>${dependance.appengine.version}</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <!-- Spring Framework -->
+
+        <!-- Spring integration -->
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-core</artifactId>
+            <version>${dependance.springframework.integration.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-http</artifactId>
+            <version>${dependance.springframework.integration.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-stream</artifactId>
+            <version>${dependance.springframework.integration.version}</version>
+        </dependency>
+
+        <!-- LOGGER -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${dependance.logger.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${dependance.logger.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${dependance.logger.logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${dependance.logger.logback.version}</version>
+        </dependency>
+
+        <!-- Autre -->
+
+        <!-- <dependency> -->
+        <!-- <groupId>com.google.appengine</groupId> -->
+        <!-- <artifactId>appengine-api-1.0-sdk</artifactId> -->
+        <!-- <version>${dependance.appengine.version}</version> -->
+        <!-- </dependency> -->
+
+    </dependencies>
+
+</project>
