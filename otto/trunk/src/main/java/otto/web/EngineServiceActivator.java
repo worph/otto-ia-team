@@ -32,12 +32,28 @@ public class EngineServiceActivator {
         Map<String, String> httpParamReturnMap = new HashMap<String, String>();
 
         Engine engine = this.engines.get(httpParamMap.get(ParamConstantes.SET));
+        
+        Integer gain1 = -1;
+        Integer gain2 = -1;
+        Integer timeout = -1;
+        Integer turn = -1;
+        try {
+            gain1 = Integer.valueOf(httpParamMap.get(ParamConstantes.GAIN1));
+        } catch (NumberFormatException nfe) {}
+        try {
+            gain2 = Integer.valueOf(httpParamMap.get(ParamConstantes.GAIN2));
+        } catch (NumberFormatException nfe) {}
+        try {
+            timeout = Integer.valueOf(httpParamMap.get(ParamConstantes.TIMEOUT));
+        } catch (NumberFormatException nfe) {}
+        try {
+            turn = Integer.valueOf(httpParamMap.get(ParamConstantes.TURN));
+        } catch (NumberFormatException nfe) {}
 
-        EngineRequestDTO req = new EngineRequestDTO(Integer.valueOf(httpParamMap.get(ParamConstantes.GAIN1)),
-                Integer.valueOf(httpParamMap.get(ParamConstantes.GAIN2)), httpParamMap.get(ParamConstantes.MOVE1),
+        EngineRequestDTO req = new EngineRequestDTO(gain1,
+                gain2, httpParamMap.get(ParamConstantes.MOVE1),
                 httpParamMap.get(ParamConstantes.MOVE2), httpParamMap.get(ParamConstantes.TRAY),
-                Integer.valueOf(httpParamMap.get(ParamConstantes.TIMEOUT)), Integer.valueOf(httpParamMap
-                        .get(ParamConstantes.TURN)));
+                timeout, turn);
         EngineResultDTO result = engine.process(req);
 
         httpParamReturnMap.put(ParamConstantes.GAME, httpParamMap.get(ParamConstantes.GAME));

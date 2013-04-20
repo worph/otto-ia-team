@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Patern simple pour fichier simple -->
+    <!-- <pattern>%-30(%d{HH:mm:ss.SSS} [%thread]) %-5level : %logger{35} %L - %msg%n%rEx%n</pattern> -->
+    <!-- Patern pour console -->
+    <!-- <pattern>%-30(%d{HH:mm:ss.SSS} [%thread]) %-5level : %logger{35} %L - %msg %rEx%n</pattern> -->
+    <!-- Patern full info pour console -->
+    <!-- <pattern>%-30(%d{HH:mm:ss.SSS} [%thread]) %-5level : %class.%method %L - %msg %rEx%n</pattern> -->
+
+    <!--<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="fileInOut" />
+    </appender>-->
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-30(%d{HH:mm:ss.SSS} [%thread]) %-5level : %logger{35} %L - %msg %rEx%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.base}/logs/otto/%d{yyyy-MM,aux}/otto.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>75MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+            <maxHistory>62</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%-30(%d{HH:mm:ss.SSS} [%thread]) %-5level : %logger{35} %L - %msg%rEx%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="fileInOut" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.base}/logs/otto/%d{yyyy-MM,aux}/ottoInOut.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>75MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+            <maxHistory>62</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%-30(%d{HH:mm:ss.SSS} [%thread]) %-5level : %logger{35} %L - %msg%rEx%n</pattern>
+        </encoder>
+    </appender>-->
+    <!-- Appenders perf -->
+    <!-- <appender name="performanceFile10min" class="org.apache.log4j.RollingFileAppender"> -->
+    <!-- <param name="MaxFileSize" value="100000KB" /> -->
+    <!-- <param name="MaxBackupIndex" value="7" /> -->
+    <!-- <param name="File" value="${catalina.home}/logs/performance10min.log" /> -->
+    <!-- <layout class="org.apache.log4j.PatternLayout"> -->
+    <!-- <param name="ConversionPattern" value="%d{dd MM yyyy HH:mm:ss} [%t] %-5p: %c - %m%n" /> -->
+    <!-- </layout> -->
+    <!-- </appender> -->
+    <!-- <appender name="performanceFile60min" class="org.apache.log4j.RollingFileAppender"> -->
+    <!-- <param name="MaxFileSize" value="100000KB" /> -->
+    <!-- <param name="MaxBackupIndex" value="7" /> -->
+    <!-- <param name="File" value="${catalina.home}/logs/performance60min.log" /> -->
+    <!-- <layout class="org.apache.log4j.PatternLayout"> -->
+    <!-- <param name="ConversionPattern" value="%d{dd MM yyyy HH:mm:ss} [%t] %-5p: %c - %m%n" /> -->
+    <!-- </layout> -->
+    <!-- </appender> -->
+    <!-- <appender name="CoalescingStatistics10min" class="org.perf4j.log4j.AsyncCoalescingStatisticsAppender"> -->
+    <!-- <param name="TimeSlice" value="600000" /> -->
+    <!-- <appender-ref ref="performanceFile10min" /> -->
+    <!-- </appender> -->
+    <!-- <appender name="CoalescingStatistics60min" class="org.perf4j.log4j.AsyncCoalescingStatisticsAppender"> -->
+    <!-- <param name="TimeSlice" value="3600000" /> -->
+    <!-- <appender-ref ref="performanceFile60min" /> -->
+    <!-- </appender> -->
+
+    <!-- Application logger -->
+    <logger name="otto">
+        <level value="debug" />
+    </logger>
+
+    <!-- <logger name="//TODO" -->
+    <!-- additivity="false"> -->
+    <!-- <level value="debug" /> -->
+    <!-- <appender-ref ref="CoalescingStatistics10min" /> -->
+    <!-- <appender-ref ref="CoalescingStatistics60min" /> -->
+    <!-- </logger> -->
+
+    <logger name="org.springframework.integration">
+        <level value="info" />
+    </logger>
+
+    <logger name="inOut" additivity="false">
+        <level value="info" />
+        <appender-ref ref="stdout" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="stdout" />
+        <!--<appender-ref ref="file" /> -->
+    </root>
+</configuration>
