@@ -17,6 +17,10 @@ public class EngineTicTacToe implements Engine{
 
     @Override
     public EngineResultDTO process(EngineRequestDTO req) {
+        String boarddata = req.getTray();
+        if(boarddata.equals("init")){
+            boarddata="000000000";
+        }
         //convention joueur 1 = X joueur 2 = O
         TicTacToeGame.Player iaplayer;
         if(req.getTurn()%2==0){//pair
@@ -24,7 +28,7 @@ public class EngineTicTacToe implements Engine{
         }else{//impaire
             iaplayer = TicTacToeGame.Player.X;
         }
-        TicTacToeGame ticTacToeGame = new TicTacToeGame(iaplayer, req.getTray());
+        TicTacToeGame ticTacToeGame = new TicTacToeGame(iaplayer, boarddata);
         Move coup = (Move) new MinMaxAlphaBeta().calcIA(ticTacToeGame,iaplayer, 100);
         return new EngineResultDTO(Character.toString(coup.toBoardNumber()));
     }
